@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using NouveauSellix.Application.Users.Abstractions;
 using NouveauSellix.Domain.Users.Entities;
 
 namespace NouveauSellix.Infrastructure.Users.Handlers
 {
-    public class JwtHandler
+    public class JwtHandler : IJwtHandler
     {
         private readonly SigningCredentials _credentials;
         private readonly IConfigurationSection _jwtSection;

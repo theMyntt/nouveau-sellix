@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NouveauSellix.Domain.Users.Entities;
-using NouveauSellix.Domain.Users.ValueObjects;
 
 namespace NouveauSellix.Application.Users.Abstractions
 {
-    public interface IUserRepository
+    public interface IJwtHandler
     {
-        Task SaveUserAsync(UserEntity user);
-        Task<UserEntity?> SearchByEmailAsync(EmailValueObject email);
+        string GenerateToken(UserEntity user);
     }
 }
