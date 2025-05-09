@@ -1,0 +1,6 @@
+@NouveauSellix.Api_HostAddress = http://localhost:5234
+
+GET {{NouveauSellix.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
