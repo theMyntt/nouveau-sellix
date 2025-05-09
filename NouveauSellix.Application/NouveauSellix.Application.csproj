@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Users\Abstractions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NouveauSellix.Domain\NouveauSellix.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
