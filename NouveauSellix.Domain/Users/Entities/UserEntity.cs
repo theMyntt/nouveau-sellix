@@ -16,11 +16,12 @@ namespace NouveauSellix.Domain.Users.Entities
 
         [JsonIgnore]
         public PasswordValueObject Password { get; private set; }
+        public string? ImagePath { get; set; }
         public bool IsBlocked { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
 
-        public UserEntity(string name, EmailValueObject email, PasswordValueObject password, bool isBlocked, DateTime createdAt, Guid? id = null, DateTime? updatedAt = null)
+        public UserEntity(string name, EmailValueObject email, PasswordValueObject password, bool isBlocked, DateTime createdAt, Guid? id = null, DateTime? updatedAt = null, string? imagePath = null)
         {
             Name = name;
             Email = email;
@@ -29,6 +30,12 @@ namespace NouveauSellix.Domain.Users.Entities
             CreatedAt = createdAt;
             Id = id ?? Guid.NewGuid();
             UpdatedAt = updatedAt;
+            ImagePath = imagePath;
+        }
+
+        public void WithImage(string path)
+        {
+            ImagePath = path;
         }
     }
 }
