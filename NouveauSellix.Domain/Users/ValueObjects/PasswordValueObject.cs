@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace NouveauSellix.Domain.Users.ValueObjects
 {
     public class PasswordValueObject
     {
+        [JsonIgnore]
         public string Hash { get; private set; }
+
+        [JsonIgnore]
         public byte[] Salt { get; private set; }
 
         public PasswordValueObject(string password)
