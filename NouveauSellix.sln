@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NouveauSellix.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NouveauSellix.Domain", "NouveauSellix.Domain\NouveauSellix.Domain.csproj", "{71DF3F5C-1C86-432A-AD08-B7E02294E43F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NouveauSellix.Tests", "NouveauSellix.Tests\NouveauSellix.Tests.csproj", "{0BA11325-565C-41DF-AC44-05B69E666A8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{71DF3F5C-1C86-432A-AD08-B7E02294E43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71DF3F5C-1C86-432A-AD08-B7E02294E43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71DF3F5C-1C86-432A-AD08-B7E02294E43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BA11325-565C-41DF-AC44-05B69E666A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BA11325-565C-41DF-AC44-05B69E666A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BA11325-565C-41DF-AC44-05B69E666A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BA11325-565C-41DF-AC44-05B69E666A8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
