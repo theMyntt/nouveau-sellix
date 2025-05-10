@@ -20,9 +20,11 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
 
         public void DeleteFile(string path)
         {
-            if (File.Exists(path))
+            var fullPath = Path.Combine(_imageFolderPath, path);
+
+            if (File.Exists(fullPath))
             {
-                File.Delete(path);
+                File.Delete(fullPath);
             }
         }
 
