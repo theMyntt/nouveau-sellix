@@ -42,7 +42,9 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
 
         public async Task<UserEntity> SearchByEmailAsync(EmailValueObject email)
         {
-            var user = await _table.SingleOrDefaultAsync(u => u.Email == email.Value);
+            var user = await _table
+                .AsNoTracking()
+                .SingleOrDefaultAsync(u => u.Email == email.Value);
 
             if (user == null)
                 throw new UserNotFoundException();
@@ -56,7 +58,9 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
 
             table.ImagePath = path;
 
-            _table.Update(table);
+            _table.Attach(table);
+            _table.Entry(table).Property(u => u.ImagePath).IsModified = true;
+
             await _context.SaveChangesAsync();
         }
     }
