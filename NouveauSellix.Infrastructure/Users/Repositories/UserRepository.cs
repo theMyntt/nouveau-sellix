@@ -8,6 +8,7 @@ using NouveauSellix.Application.Users.Abstractions;
 using NouveauSellix.Domain.Users.Entities;
 using NouveauSellix.Domain.Users.ValueObjects;
 using NouveauSellix.Infrastructure.Shared;
+using NouveauSellix.Infrastructure.Users.Repositories.Exceptions;
 using NouveauSellix.Infrastructure.Users.Repositories.Mappers;
 using NouveauSellix.Infrastructure.Users.Tables;
 
@@ -26,7 +27,14 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
 
         public async Task SaveUserAsync(UserEntity user)
         {
-            var table = user.ToTable();
+            var table = await _table.SingleOrDefaultAsync(u => u.Email == user.Email.Value);
+
+            if (table != null)
+            {
+                throw new UserAlreadyExistsException();
+            }
+
+            table = user.ToTable();
 
             await _table.AddAsync(table);
             await _context.SaveChangesAsync();
