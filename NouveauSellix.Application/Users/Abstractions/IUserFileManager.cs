@@ -9,5 +9,6 @@ namespace NouveauSellix.Application.Users.Abstractions
     public interface IUserFileManager
     {
         Task<string> SaveNewProfilePictureAsync(byte[] photo);
+        void DeleteFile(string path);
     }
 }

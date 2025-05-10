@@ -11,6 +11,7 @@ namespace NouveauSellix.Application.Users.Abstractions
     public interface IUserRepository
     {
         Task SaveUserAsync(UserEntity user);
-        Task<UserEntity?> SearchByEmailAsync(EmailValueObject email);
+        Task<UserEntity> SearchByEmailAsync(EmailValueObject email);
+        Task UpdateUserImage(UserEntity user, string path);
     }
 }

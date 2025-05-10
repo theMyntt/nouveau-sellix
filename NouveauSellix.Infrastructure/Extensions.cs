@@ -8,6 +8,8 @@ using NouveauSellix.Application.Users.Services.CreateUser;
 using NouveauSellix.Application.Users.Services.CreateUser.Implementations;
 using NouveauSellix.Application.Users.Services.Login;
 using NouveauSellix.Application.Users.Services.Login.Implementations;
+using NouveauSellix.Application.Users.Services.UpdateUserImage;
+using NouveauSellix.Application.Users.Services.UpdateUserImage.Implementations;
 using NouveauSellix.Infrastructure.Shared;
 using NouveauSellix.Infrastructure.Users.Handlers;
 using NouveauSellix.Infrastructure.Users.Repositories;
@@ -52,6 +54,7 @@ namespace NouveauSellix.Infrastructure
         {
             services.AddScoped<ICreateUserService, CreateUserService>();
             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<IUpdateUserImageService, UpdateUserImageService>();
         }
     }
 }

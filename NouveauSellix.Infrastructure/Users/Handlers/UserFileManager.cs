@@ -18,6 +18,14 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
             _imageFolderPath = configuration["ImageFolderPath"] ?? throw new Exception("ImageFolderPath Is Null On Settings");
         }
 
+        public void DeleteFile(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         public async Task<string> SaveNewProfilePictureAsync(byte[] photo)
         {
             if (photo.Length == 0)

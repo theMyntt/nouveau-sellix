@@ -40,11 +40,24 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<UserEntity?> SearchByEmailAsync(EmailValueObject email)
+        public async Task<UserEntity> SearchByEmailAsync(EmailValueObject email)
         {
             var user = await _table.SingleOrDefaultAsync(u => u.Email == email.Value);
 
-            return user?.ToEntity();
+            if (user == null)
+                throw new UserNotFoundException();
+
+            return user.ToEntity();
+        }
+
+        public async Task UpdateUserImage(UserEntity user, string path)
+        {
+            var table = user.ToTable();
+
+            table.ImagePath = path;
+
+            _table.Update(table);
+            await _context.SaveChangesAsync();
         }
     }
 }
