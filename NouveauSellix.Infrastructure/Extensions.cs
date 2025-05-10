@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using NouveauSellix.Application.Users.Abstractions;
 using NouveauSellix.Application.Users.Services.CreateUser;
 using NouveauSellix.Application.Users.Services.CreateUser.Implementations;
@@ -28,6 +30,22 @@ namespace NouveauSellix.Infrastructure
             services.AddScoped<IJwtHandler, JwtHandler>();
             services.AddScoped<IUserFileManager, UserFileManager>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateLifetime = true,
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = configuration["Jwt:Issuer"],
+                        ValidAudience = configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]!))
+                    };
+                });
+            services.AddAuthorization();
         }
 
         public static void AddApplication(this IServiceCollection services)

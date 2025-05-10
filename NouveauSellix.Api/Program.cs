@@ -34,7 +34,7 @@ namespace NouveauSellix.Api
             }
 
             app.UseAuthorization();
-
+            app.UseAuthorization();
 
             app.MapControllers();
 
