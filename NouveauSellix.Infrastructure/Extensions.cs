@@ -2,6 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NouveauSellix.Application.Users.Abstractions;
+using NouveauSellix.Application.Users.Services.CreateUser;
+using NouveauSellix.Application.Users.Services.CreateUser.Implementations;
+using NouveauSellix.Application.Users.Services.Login;
+using NouveauSellix.Application.Users.Services.Login.Implementations;
 using NouveauSellix.Infrastructure.Shared;
 using NouveauSellix.Infrastructure.Users.Handlers;
 using NouveauSellix.Infrastructure.Users.Repositories;
@@ -24,6 +28,12 @@ namespace NouveauSellix.Infrastructure
             services.AddScoped<IJwtHandler, JwtHandler>();
             services.AddScoped<IUserFileManager, UserFileManager>();
             services.AddScoped<IUserRepository, UserRepository>();
+        }
+
+        public static void AddApplication(this IServiceCollection services)
+        {
+            services.AddScoped<ICreateUserService, CreateUserService>();
+            services.AddScoped<ILoginService, LoginService>();
         }
     }
 }
