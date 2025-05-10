@@ -14,6 +14,7 @@ namespace NouveauSellix.Application.Users.Services.UpdateUserImage.IO
         public required IFormFile Image { get; set; }
 
         [Required]
+        [EmailAddress]
         public required string Email { get; set; }
     }
 }
