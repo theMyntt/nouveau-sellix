@@ -6,10 +6,11 @@ namespace NouveauSellix.Api.Controllers.Users
 {
     [ApiController]
     [Route("/api")]
+    [Tags("User Auth", "User")]
     public class LoginController : ControllerBase
     {
         [HttpPost("v1/auth")]
-        [EndpointDescription("Generate JWT Token for Auth")]
+        [EndpointSummary("Generate JWT Token for Auth")]
         public async Task<IActionResult> PerformV1(
             [FromBody] LoginServiceInput input,
             [FromServices] ILoginService service)
