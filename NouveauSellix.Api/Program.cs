@@ -23,6 +23,13 @@ namespace NouveauSellix.Api
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("DefaultPolicy", policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             builder.Services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -40,6 +47,7 @@ namespace NouveauSellix.Api
 
             var app = builder.Build();
 
+            app.UseCors("DefaultPolicy");
             app.UseMiddleware<ExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
