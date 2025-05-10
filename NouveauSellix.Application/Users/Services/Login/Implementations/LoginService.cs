@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NouveauSellix.Application.Users.Abstractions;
+using NouveauSellix.Application.Users.Services.Login.Implementations.Exceptions;
 using NouveauSellix.Application.Users.Services.Login.IO;
 using NouveauSellix.Domain.Users.ValueObjects;
 
@@ -24,14 +25,11 @@ namespace NouveauSellix.Application.Users.Services.Login.Implementations
         {
             var email = new EmailValueObject(input.Email);
             var user = await _userRepository.SearchByEmailAsync(email);
-            
-            if (user == null)
-                throw new Exception();
 
             var isNotEqualPassword = !(user.Password.MatchesWith(input.Password));
 
             if (isNotEqualPassword)
-                throw new Exception();
+                throw new PasswordIncorrectException();
 
             var token = _jwtHandler.GenerateToken(user);
 
