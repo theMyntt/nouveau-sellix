@@ -13,7 +13,7 @@ namespace NouveauSellix.Api.Controllers.Users
         [HttpPost("v1/user")]
         [EndpointSummary("Create a new user")]
         public async Task<IActionResult> PerformV1(
-            [FromBody] CreateUserServiceInput input,
+            [FromForm] CreateUserServiceInput input,
             [FromServices] ICreateUserService service)
         {
             var result = await service.ExecuteAsync(input);
