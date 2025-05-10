@@ -33,7 +33,7 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
 
             await File.WriteAllBytesAsync(filePath, photo);
 
-            return Path.Combine(folderPath, fileName);
+            return $"{folderCombination}/{fileName}";
         }
     }
 }
