@@ -46,7 +46,7 @@ namespace NouveauSellix.Application.Users.Services.CreateUser.Implementations
 
             return new CreateUserServiceOutput
             {
-                Message = "Created.",
+                Message = "Criado com sucesso.",
                 User = user,
                 StatusCode = 201
             };
