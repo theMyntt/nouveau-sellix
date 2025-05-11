@@ -48,7 +48,7 @@ namespace NouveauSellix.Api.Middlewares
 
                 var body = new
                 {
-                    Message = "Internal Server Error",
+                    Message = "Erro interno.",
                     StatusCode = 500
                 };
 
