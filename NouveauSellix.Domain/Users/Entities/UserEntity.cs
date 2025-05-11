@@ -16,7 +16,7 @@ namespace NouveauSellix.Domain.Users.Entities
 
         [JsonIgnore]
         public PasswordValueObject Password { get; private set; }
-        public string? ImagePath { get; set; }
+        public string? ImagePath { get; private set; }
         public bool IsBlocked { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
