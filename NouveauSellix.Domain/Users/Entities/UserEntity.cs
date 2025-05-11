@@ -37,5 +37,21 @@ namespace NouveauSellix.Domain.Users.Entities
         {
             ImagePath = path;
         }
+
+        public void UnActivate()
+        {
+            if (IsBlocked) 
+                return;
+
+            IsBlocked = true;
+        }
+
+        public void Activate()
+        {
+            if (!IsBlocked)
+                return;
+
+            IsBlocked = false;
+        }
     }
 }
