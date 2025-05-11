@@ -7,7 +7,7 @@ using NouveauSellix.Domain.Shared;
 
 namespace NouveauSellix.Application.Users.Services.Login.Implementations.Exceptions
 {
-    public class PasswordIncorrectException() : HttpException("Password is incorrect", 400)
+    public class PasswordIncorrectException() : HttpException("Senha incorreta.", 400)
     {
     }
 }

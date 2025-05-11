@@ -7,7 +7,7 @@ using NouveauSellix.Domain.Shared;
 
 namespace NouveauSellix.Infrastructure.Users.Repositories.Exceptions
 {
-    public class UserNotFoundException() : HttpException("No user found to update image", 404)
+    public class UserNotFoundException() : HttpException("Nenhum usuário encontrado", 404)
     {
     }
 }

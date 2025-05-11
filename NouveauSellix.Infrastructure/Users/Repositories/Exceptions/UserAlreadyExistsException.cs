@@ -7,7 +7,7 @@ using NouveauSellix.Domain.Shared;
 
 namespace NouveauSellix.Infrastructure.Users.Repositories.Exceptions
 {
-    public class UserAlreadyExistsException() : HttpException("User Already Exists", 409)
+    public class UserAlreadyExistsException() : HttpException("Este usuário já existe.", 409)
     {
     }
 }
