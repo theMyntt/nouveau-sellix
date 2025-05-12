@@ -6,7 +6,7 @@ namespace NouveauSellix.Api.Controllers.Users
 {
     [ApiController]
     [Route("/api")]
-    [Tags("User Auth", "User")]
+    [Tags("Auth", "User")]
     public class LoginController : ControllerBase
     {
         [HttpPost("v1/auth")]
