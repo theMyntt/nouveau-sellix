@@ -8,6 +8,8 @@ using NouveauSellix.Application.Users.Services.CreateUser;
 using NouveauSellix.Application.Users.Services.CreateUser.Implementations;
 using NouveauSellix.Application.Users.Services.Login;
 using NouveauSellix.Application.Users.Services.Login.Implementations;
+using NouveauSellix.Application.Users.Services.RefreshToken;
+using NouveauSellix.Application.Users.Services.RefreshToken.Implementations;
 using NouveauSellix.Application.Users.Services.UpdateUserImage;
 using NouveauSellix.Application.Users.Services.UpdateUserImage.Implementations;
 using NouveauSellix.Infrastructure.Shared;
@@ -55,6 +57,7 @@ namespace NouveauSellix.Infrastructure
             services.AddScoped<ICreateUserService, CreateUserService>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUpdateUserImageService, UpdateUserImageService>();
+            services.AddScoped<IRefreshTokenService, RefreshTokenService>();
         }
     }
 }
