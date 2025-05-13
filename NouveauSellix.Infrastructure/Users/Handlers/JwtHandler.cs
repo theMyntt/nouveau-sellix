@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using NouveauSellix.Application.Users.Abstractions;
+using NouveauSellix.Application.Users.Services.RefreshToken.Implementations.Exceptions;
 using NouveauSellix.Domain.Users.Entities;
 using NouveauSellix.Infrastructure.Users.Handlers.Exceptions;
 
@@ -66,13 +67,21 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
-            if (securityToken is not JwtSecurityToken jwtToken || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
-                throw new UnAuthenticJwtTokenException();
+            try
+            {
 
-            return principal.Claims.ToList();
+                var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+
+                if (securityToken is not JwtSecurityToken jwtToken || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                    throw new UnAuthenticJwtTokenException();
+
+                return principal.Claims.ToList();
+            }
+            catch (Exception)
+            {
+                throw new InvalidJwtTokenException();
+            }
         }
     }
 }
