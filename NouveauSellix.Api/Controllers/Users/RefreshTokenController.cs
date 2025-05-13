@@ -10,6 +10,7 @@ namespace NouveauSellix.Api.Controllers.Users
     public class RefreshTokenController : ControllerBase
     {
         [HttpPost("v1/auth/refresh")]
+        [EndpointSummary("Refresh your old jwt token")]
         public async Task<IActionResult> PerformV1(
             [FromBody] RefreshTokenServiceInput input,
             [FromServices] IRefreshTokenService service)
