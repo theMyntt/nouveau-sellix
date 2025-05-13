@@ -35,9 +35,8 @@ namespace NouveauSellix.Api
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
+                    Type = SecuritySchemeType.Http,
                     Scheme = "Bearer",
-                    BearerFormat = "JWT",
                     In = ParameterLocation.Header,
                     Description = "Insira o token JWT no campo: **Bearer {seu token}**"
                 });
@@ -57,7 +56,7 @@ namespace NouveauSellix.Api
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
