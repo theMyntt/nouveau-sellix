@@ -35,15 +35,15 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
 
             var claims = new List<Claim>()
             {
-                new(JwtRegisteredClaimNames.Email, user.Email.Value),
-                new(JwtRegisteredClaimNames.Name, user.Name)
+                new("email", user.Email.Value),
+                new("name", user.Name)
             };
 
             var token = new JwtSecurityToken(
                 issuer: _jwtSection["Issuer"]!,
                 audience: _jwtSection["Audience"]!,
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(2),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: _credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -63,14 +63,13 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
                 ValidIssuer = _jwtSection["Issuer"]!,
                 ValidAudience = _jwtSection["Audience"]!,
                 RequireSignedTokens = true,
-                RequireExpirationTime = true
+                RequireExpirationTime = false
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
             try
             {
-
                 var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
                 if (securityToken is not JwtSecurityToken jwtToken || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
