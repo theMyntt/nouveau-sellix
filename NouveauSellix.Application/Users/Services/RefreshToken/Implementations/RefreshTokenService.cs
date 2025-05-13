@@ -36,7 +36,7 @@ namespace NouveauSellix.Application.Users.Services.RefreshToken.Implementations
             return new RefreshTokenServiceOutput
             {
                 Message = "OK",
-                NewToken = newToken,
+                Token = newToken,
                 StatusCode = 200
             };
         }

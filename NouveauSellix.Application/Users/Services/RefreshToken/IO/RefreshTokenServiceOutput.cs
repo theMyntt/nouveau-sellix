@@ -9,7 +9,7 @@ namespace NouveauSellix.Application.Users.Services.RefreshToken.IO
     public class RefreshTokenServiceOutput
     {
         public string Message { get; set; } = string.Empty;
-        public string NewToken { get; set; } = string.Empty;
+        public string Token { get; set; } = string.Empty;
         public int StatusCode { get; set; }
     }
 }
