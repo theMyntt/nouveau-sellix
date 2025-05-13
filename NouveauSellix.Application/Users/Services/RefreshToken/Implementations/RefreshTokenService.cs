@@ -23,13 +23,13 @@ namespace NouveauSellix.Application.Users.Services.RefreshToken.Implementations
 
         public async Task<RefreshTokenServiceOutput> ExecuteAsync(RefreshTokenServiceInput input)
         {
-            var principal = _jwtHandler.IsAuthentic(input.OldToken);
-            var claimEmail = principal.Claims.SingleOrDefault(u => u.Type == "email");
+            var claims = _jwtHandler.IsAuthentic(input.OldToken);
+            var claimEmail = (claims.FirstOrDefault(u => u.Type == "email"))?.Value;
 
             if (claimEmail == null)
                 throw new InvalidJwtTokenException();
 
-            var email = new EmailValueObject(claimEmail.Value);
+            var email = new EmailValueObject(claimEmail);
             var user = await _userRepository.SearchByEmailAsync(email);
             var newToken = _jwtHandler.GenerateToken(user);
 

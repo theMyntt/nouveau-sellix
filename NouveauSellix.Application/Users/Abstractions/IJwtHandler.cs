@@ -20,6 +20,6 @@ namespace NouveauSellix.Application.Users.Abstractions
         /// <param name="token">String do token JWT</param>
         /// <returns></returns>
         /// <exception cref="UnAuthenticJwtTokenException">Token não autêntico ou invalido</exception>
-        ClaimsPrincipal IsAuthentic(string token);
+        List<Claim> IsAuthentic(string token);
     }
 }

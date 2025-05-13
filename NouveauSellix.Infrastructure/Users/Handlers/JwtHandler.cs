@@ -30,10 +30,12 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
 
         public string GenerateToken(UserEntity user)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             var claims = new List<Claim>()
             {
-                new("name", user.Name),
-                new("email", user.Email.Value)
+                new(JwtRegisteredClaimNames.Email, user.Email.Value),
+                new(JwtRegisteredClaimNames.Name, user.Name)
             };
 
             var token = new JwtSecurityToken(
@@ -46,26 +48,31 @@ namespace NouveauSellix.Infrastructure.Users.Handlers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public ClaimsPrincipal IsAuthentic(string token)
+        public List<Claim> IsAuthentic(string token)
         {
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             var tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = true,
+                ValidateIssuer = false,
                 ValidateAudience = true,
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = false,
                 IssuerSigningKey = _key,
-                ValidIssuer = _jwtSection["Issuer"],
-                ValidAudience = _jwtSection["Audience"]
+                ValidIssuer = _jwtSection["Issuer"]!,
+                ValidAudience = _jwtSection["Audience"]!,
+                RequireSignedTokens = true,
+                RequireExpirationTime = true
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
+            
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
             if (securityToken is not JwtSecurityToken jwtToken || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
                 throw new UnAuthenticJwtTokenException();
 
-            return principal;
+            return principal.Claims.ToList();
         }
     }
 }
