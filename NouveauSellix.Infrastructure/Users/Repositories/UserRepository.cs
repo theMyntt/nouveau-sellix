@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -27,11 +28,17 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
 
         public async Task SaveUserAsync(UserEntity user)
         {
-            var table = await _table.SingleOrDefaultAsync(u => u.Email == user.Email.Value);
+            var table = await _table.SingleOrDefaultAsync(u => u.Email == user.Email.Value && u.IsDeleted == false);
 
-            if (table != null)
+            if (table is not null)
             {
-                throw new UserAlreadyExistsException();
+                if (!table.IsDeleted)
+                {
+                    throw new UserAlreadyExistsException();
+                }
+
+                _table.Remove(table);
+                await _context.SaveChangesAsync();
             }
 
             table = user.ToTable();
@@ -44,9 +51,9 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
         {
             var user = await _table
                 .AsNoTracking()
-                .SingleOrDefaultAsync(u => u.Email == email.Value);
+                .SingleOrDefaultAsync(u => u.Email == email.Value && u.IsDeleted == false);
 
-            if (user == null)
+            if (user is null)
                 throw new UserNotFoundException();
 
             return user.ToEntity();
