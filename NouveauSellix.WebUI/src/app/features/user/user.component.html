@@ -1,0 +1,23 @@
+<div>
+  <h2> {{ user()!.name }} </h2>
+  <p> {{ user()!.email }} </p>
+</div>
+<br />
+<fieldset>
+  <legend>Acesso rápido</legend>
+  <button mat-flat-button>Editar Informações</button>
+  <button mat-flat-button class="red-btn">Deletar Conta</button>
+  <button mat-flat-button class="red-btn">Sair</button>
+</fieldset>
+<br />
+<fieldset>
+  <div>
+    <h2>Informações completas do usuário</h2> <br />
+    <hr />
+    <br />
+    <p><b>Nome: </b> {{ user()!.name }}</p>
+    <p><b>Email: </b> {{ user()!.email }}</p>
+    <p><b>Cargo: </b> Admin</p>
+    <p><b>Registrado em: </b> 25/05/2025 </p>
+  </div>
+</fieldset>
