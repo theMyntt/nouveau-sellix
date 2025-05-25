@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, RedirectCommand, Router } from '@angular/router';
-import { CurrentUserLoggedStore } from '../stores/current-user-logged-store.store';
+import { AuthTokenStorageService } from '../services/auth-token-storage.service';
 
 export const isAuthenticatedGuard: CanActivateFn = (route, state) => {
-  const store = inject(CurrentUserLoggedStore)
+  const store = inject(AuthTokenStorageService)
   const router = inject(Router)
 
-  if (!store.isLoggedIn()) {
+  if (!store.has()) {
     const loginPath = router.parseUrl("/auth/login")
     return new RedirectCommand(loginPath)
   }
