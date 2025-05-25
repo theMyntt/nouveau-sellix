@@ -26,9 +26,24 @@ namespace NouveauSellix.Infrastructure.Users.Repositories
             _table = _context.Set<UserTable>();
         }
 
+        public async Task DeleteUserAsync(EmailValueObject email)
+        {
+            var table = await _table.SingleOrDefaultAsync(u => u.Email == email.Value);
+
+            if (table == null)
+                throw new UserNotFoundException();
+
+            if (table.IsDeleted)
+                throw new UserNotFoundException();
+
+            table.IsDeleted = true;
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task SaveUserAsync(UserEntity user)
         {
-            var table = await _table.SingleOrDefaultAsync(u => u.Email == user.Email.Value && u.IsDeleted == false);
+            var table = await _table.SingleOrDefaultAsync(u => u.Email == user.Email.Value);
 
             if (table is not null)
             {

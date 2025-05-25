@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using NouveauSellix.Application.Users.Abstractions;
 using NouveauSellix.Application.Users.Services.CreateUser;
 using NouveauSellix.Application.Users.Services.CreateUser.Implementations;
+using NouveauSellix.Application.Users.Services.DeleteUser;
+using NouveauSellix.Application.Users.Services.DeleteUser.Implementations;
 using NouveauSellix.Application.Users.Services.Login;
 using NouveauSellix.Application.Users.Services.Login.Implementations;
 using NouveauSellix.Application.Users.Services.RefreshToken;
@@ -60,6 +62,7 @@ namespace NouveauSellix.Infrastructure
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUpdateUserImageService, UpdateUserImageService>();
             services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+            services.AddScoped<IDeleteUserService, DeleteUserService>();
         }
     }
 }

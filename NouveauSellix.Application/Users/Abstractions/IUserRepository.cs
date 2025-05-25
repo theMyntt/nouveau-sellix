@@ -13,5 +13,6 @@ namespace NouveauSellix.Application.Users.Abstractions
         Task SaveUserAsync(UserEntity user);
         Task<UserEntity> SearchByEmailAsync(EmailValueObject email);
         Task UpdateUserImage(UserEntity user, string path);
+        Task DeleteUserAsync(EmailValueObject email);
     }
 }
