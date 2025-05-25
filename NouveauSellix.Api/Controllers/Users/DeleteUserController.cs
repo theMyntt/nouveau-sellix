@@ -11,7 +11,7 @@ namespace NouveauSellix.Api.Controllers.Users
     [Tags("Delete User", "User")]
     public class DeleteUserController : ControllerBase
     {
-        [HttpDelete]
+        [HttpDelete("v1/user")]
         public async Task<IActionResult> PerformV1(
             [FromHeader(Name = "Authorization")] string token,
             [FromServices] IDeleteUserService service)
