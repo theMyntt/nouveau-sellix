@@ -2,3 +2,11 @@
 * { margin: 0; padding: 0; }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+fieldset {
+  padding: 15px 10px;
+  display: flex;
+  gap: 7px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 10px;
+}
