@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { isAuthenticatedGuard } from './core/auth/guards/is-authenticated.guard';
 import { AuthComponent } from './features/auth/auth.component';
+import { isNotAuthenticatedGuard } from './core/auth/guards/is-not-authenticated.guard';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,7 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
+    canActivate: [isNotAuthenticatedGuard],
     children: [
       {
         path: '',
