@@ -4,11 +4,11 @@ import { AuthComponent } from './features/auth/auth.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     canActivate: [isAuthenticatedGuard],
     children: [
       {
-        path: 'home',
+        path: '',
         loadChildren: () => import('./features/home/routes').then(m => m.routes)
       }
     ]
