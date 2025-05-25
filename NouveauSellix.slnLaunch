@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Start All",
+    "Projects": [
+      {
+        "Path": "NouveauSellix.Api\\NouveauSellix.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      },
+      {
+        "Path": "NouveauSellix.WebUI\\NouveauSellix.WebUI.esproj",
+        "Action": "Start",
+        "DebugTarget": "localhost (Edge)"
+      }
+    ]
+  }
+]

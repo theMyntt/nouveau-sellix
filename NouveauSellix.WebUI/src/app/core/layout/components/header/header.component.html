@@ -1,0 +1,17 @@
+<mat-toolbar>
+    <p>Sellix</p>
+    <span class="spacer"></span>
+    @if (isLogged()) {
+        <button mat-flat-button [matMenuTriggerFor]="profileOptionsMenu">
+            <b>{{ user()!.name }}</b>
+        </button>
+
+        <mat-menu #profileOptionsMenu>
+            <button mat-menu-item>Editar</button>
+            <button mat-menu-item (click)="logout()">Sair</button>
+        </mat-menu>
+    }
+    @else {
+        <button mat-flat-button routerLink="/auth/login">Fazer login</button>
+    }
+</mat-toolbar>

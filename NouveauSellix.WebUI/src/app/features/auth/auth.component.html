@@ -1,0 +1,31 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <h3>Fazer login.</h3>
+    <mat-form-field>
+        <mat-label>Email:</mat-label>
+        <input matInput [formControl]="loginForm.controls.email" />
+
+        @if (loginForm.controls.email.hasError("required")) {
+        <p matError>Email é obrigatório</p>
+        }
+        @if (loginForm.controls.email.hasError("email")) {
+          <p matError>Email invalido!</p>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Senha:</mat-label>
+        <input matInput [formControl]="loginForm.controls.password" [type]="showPassword() ? 'text' : 'password'" />
+        <button mat-icon-button matSuffix (click)="updateShowPassword($event)" type="button">
+            <mat-icon>{{ showPassword() ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+
+        @if (loginForm.controls.password.hasError("required")) {
+        <p matError>A senha é obrigatória</p>
+        }
+        @if (loginForm.controls.password.hasError("minlength")) {
+        <p matError>A senha é muito pequena</p>
+        }
+    </mat-form-field>
+    <button mat-flat-button type="submit" [disabled]="isTryingToAuth()">
+        Fazer login
+    </button>
+</form>

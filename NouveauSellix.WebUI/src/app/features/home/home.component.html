@@ -1,0 +1,31 @@
+<mat-grid-list cols="5" rowHeight="1:1" gutterSize="16px">
+    <mat-grid-tile colspan="1" rowspan="1">
+        <p>hi</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+        <div>
+            <p>Bem vindo,</p>
+            <h2>Gabriel Araújo</h2>
+            <br />
+            <fieldset>
+                <legend>Acesso rápido</legend>
+                <button mat-flat-button>btn</button>
+                <button mat-flat-button>btn</button>
+                <button mat-flat-button>btn</button>
+                <button mat-flat-button>btn</button>
+            </fieldset>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        <p>{{ time() | date:"hh:mm:ss a" }}</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+        <p>hi</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+        <p>hi</p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+        <p>hi</p>
+    </mat-grid-tile>
+</mat-grid-list>

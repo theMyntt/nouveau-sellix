@@ -1,0 +1,21 @@
+:host {
+  mat-grid-list {
+    mat-grid-tile {
+      div {
+        width: 90%;
+        height: 80%;
+        fieldset {
+            padding: 15px 10px;
+            display: flex;
+            gap: 7px;
+        }
+      }
+    }
+  }
+}
+
+mat-grid-tile,
+fieldset {
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 10px;
+}
